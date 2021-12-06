@@ -9,3 +9,5 @@
 - [ ] Add animation
 - [ ] Filter feature
 - [ ] Responsive
+- [ ] Fix linter issue
+- [ ] Typechecking With PropTypes
