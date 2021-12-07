@@ -13,7 +13,7 @@ const App = () => {
       firstName: 'Dan',
       lastName: 'Abramov',
       email: 'dan@reactjs.org',
-      phone: '08222222'
+      phone: 821999
     }
   ]
 
@@ -22,7 +22,7 @@ const App = () => {
     firstName: '',
     lastName: '',
     email: '',
-    phone: ''
+    phone: null
   }
 
   // Setting state

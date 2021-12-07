@@ -52,10 +52,7 @@ const EditUserForm = (props) => {
         onChange={handleInputChange}
       />
       <button>Update</button>
-      <button
-        onClick={() => setEditing(false)}
-        className="button muted-button"
-      >
+      <button onClick={() => setEditing(false)} className="button muted-button">
         Cancel
       </button>
     </form>

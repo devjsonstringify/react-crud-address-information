@@ -22,7 +22,9 @@ const AddUserForm = (props) => {
     <form
       onSubmit={(event) => {
         event.preventDefault()
-        if (!user.firstName || !user.lastName || !user.email || !user.phone) { return }
+        if (!user.firstName || !user.lastName || !user.email || !user.phone) {
+          return
+        }
 
         addUser(user)
         setUser(initialFormState)

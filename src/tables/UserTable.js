@@ -15,50 +15,54 @@ const UserTable = (props) => {
         </tr>
       </thead>
       <tbody>
-        {users.length > 0 // eslint-disable-line
-          ? (
-              users.map((user) => ( // eslint-disable-line
-            <tr key={user.id}>
-              <td>{user.firstName}</td>
-              <td>{user.lastName}</td>
-              <td>{user.email}</td>
-              <td>{user.phone}</td>
-              <td>
-                <button
-                  onClick={() => {
-                    editRow(user)
-                  }}
-                  className="button muted-button"
-                >
-                  Edit
-                </button>
-                <button
-                  onClick={() => deleteUser(user.id)}
-                  className="button muted-button"
-                >
-                  Delete
-                </button>
-              </td>
-            </tr>
-              ))
+        {users.length > 0 ? ( // eslint-disable-line
+          users.map(
+            (
+              user // eslint-disable-line
+            ) => (
+              <tr key={user.id}>
+                <td>{user.firstName}</td>
+                <td>{user.lastName}</td>
+                <td>{user.email}</td>
+                <td>{user.phone}</td>
+                <td>
+                  <button
+                    onClick={() => {
+                      editRow(user)
+                    }}
+                    className="button muted-button"
+                  >
+                    Edit
+                  </button>
+                  <button
+                    onClick={() => deleteUser(user.id)}
+                    className="button muted-button"
+                  >
+                    Delete
+                  </button>
+                </td>
+              </tr>
             )
-          : (
+          )
+        ) : (
           <tr>
             <td colSpan={3}>No users</td>
           </tr>
-            )}
+        )}
       </tbody>
     </table>
   )
 }
 
 UserTable.propTypes = {
-  users: PropTypes.shape({
-    firstName: PropTypes.string.isRequired,
-    lastName: PropTypes.string.isRequired,
-    email: PropTypes.string.isRequired,
-    phone: PropTypes.number.isRequired
-  }),
+  users: PropTypes.arrayOf(
+    PropTypes.shape({
+      firstName: PropTypes.string.isRequired,
+      lastName: PropTypes.string.isRequired,
+      email: PropTypes.string.isRequired,
+      phone: PropTypes.number.isRequired
+    })
+  ),
   editRow: PropTypes.func.isRequired,
   deleteUser: PropTypes.func.isRequired
 }
