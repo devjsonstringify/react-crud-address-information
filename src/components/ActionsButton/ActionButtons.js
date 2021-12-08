@@ -8,21 +8,17 @@ const ActionButtons = ({ onHandleEdit, onHandleDelete }) => {
     <Box
       sx={{
         display: 'flex',
+        justifyContent: 'center',
         button: {
           margin: 'auto 1rem 0 0'
-        },
-        ':hover': {
-          button: {
-            border: '0'
-          }
         }
       }}
     >
       <Button
         onClick={onHandleEdit}
-        variant="contained"
-        color="info"
-        size="large"
+        variant="text"
+        color="primary"
+        size="small"
       >
         Edit
       </Button>
@@ -30,7 +26,7 @@ const ActionButtons = ({ onHandleEdit, onHandleDelete }) => {
         onClick={onHandleDelete}
         variant="contained"
         color="error"
-        size="large"
+        size="small"
       >
         Delete
       </Button>

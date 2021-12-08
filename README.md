@@ -5,7 +5,7 @@
 - [x] Add item
 - [x] Update item
 - [x] Delete item
-- [ ] UI with material-ui
+- [x] UI with material-ui
 - [ ] Add animation
 - [ ] Filter feature
 - [ ] Responsive

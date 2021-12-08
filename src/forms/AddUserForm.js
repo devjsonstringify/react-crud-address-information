@@ -1,5 +1,7 @@
 import PropTypes from 'prop-types'
 import React, { useState } from 'react'
+import TextField from '@mui/material/TextField'
+import Button from '@mui/material/Button'
 
 const AddUserForm = (props) => {
   const { addUser } = props
@@ -14,6 +16,9 @@ const AddUserForm = (props) => {
 
   const handleInputChange = (event) => {
     const { name, value } = event.target
+
+    console.log(name)
+    console.log(value)
 
     setUser({ ...user, [name]: value })
   }
@@ -30,35 +35,83 @@ const AddUserForm = (props) => {
         setUser(initialFormState)
       }}
     >
-      <label>First name</label>
-      <input
+      <TextField
         type="text"
+        color="primary"
         name="firstName"
+        label="First name"
+        fullWidth
+        margin="normal"
+        required
+        sx={{
+          '.MuiOutlinedInput-notchedOutline': {
+            borderColor: 'primary.main',
+            borderWidth: '2px'
+          }
+        }}
         value={user.firstName}
         onChange={handleInputChange}
       />
-      <label>Last name</label>
-      <input
+      <TextField
         type="text"
         name="lastName"
+        color="primary"
+        label="Last name"
+        fullWidth
+        margin="normal"
+        required
+        sx={{
+          '.MuiOutlinedInput-notchedOutline': {
+            borderColor: 'primary.main',
+            borderWidth: '2px'
+          }
+        }}
         value={user.lastName}
         onChange={handleInputChange}
       />
-      <label>Email</label>
-      <input
+      <TextField
         type="email"
         name="email"
+        color="primary"
+        label="Email"
+        fullWidth
+        margin="normal"
+        required
+        sx={{
+          '.MuiOutlinedInput-notchedOutline': {
+            borderColor: 'primary.main',
+            borderWidth: '2px'
+          }
+        }}
         value={user.email}
         onChange={handleInputChange}
       />
-      <label>Phone</label>
-      <input
+      <TextField
         type="number"
         name="phone"
+        label="Phone"
+        color="primary"
+        fullWidth
+        margin="normal"
+        required
+        sx={{
+          '.MuiOutlinedInput-notchedOutline': {
+            borderColor: 'primary.main',
+            borderWidth: '2px'
+          }
+        }}
         value={user.phone}
         onChange={handleInputChange}
       />
-      <button>Add new user</button>
+      <Button
+        variant="contained"
+        size="medium"
+        type="submit"
+        fullWidth
+        sx={{ margin: '1rem 0' }}
+      >
+        Add
+      </Button>
     </form>
   )
 }

@@ -4,7 +4,7 @@ import Typography from '@mui/material/Typography'
 
 const NoDataFound = () => {
   return (
-    <Box width="100%" display="block">
+    <Box width="100%" display="block" padding="1rem">
       <Typography align="center">No data found...</Typography>
     </Box>
   )

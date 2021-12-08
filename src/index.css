@@ -1,0 +1,9 @@
+@import-normalize; /* bring in normalize.css styles */
+
+/* rest of app styles */
+
+html,
+body,
+#root {
+  height: 100%;
+}

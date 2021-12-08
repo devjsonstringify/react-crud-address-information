@@ -1,9 +1,29 @@
-import React, { useState, Fragment } from 'react'
+import React, { useState } from 'react'
 import Box from '@mui/material/Box'
+import IconButton from '@mui/material/IconButton'
 import Container from '@mui/material/Container'
+import Typography from '@mui/material/Typography'
+import CloseIcon from '@mui/icons-material/Close'
+import Button from '@mui/material/Button'
+import AddIcon from '@mui/icons-material/Add'
+import Modal from '@mui/material/Modal'
+import { ThemeProvider } from '@mui/material/styles'
 import AddUserForm from './forms/AddUserForm'
 import EditUserForm from './forms/EditUserForm'
 import UserTable from './tables/UserTable'
+import { theme } from './theme'
+
+const modalStyle = {
+  position: 'absolute',
+  top: '50%',
+  left: '50%',
+  transform: 'translate(-50%, -50%)',
+  width: 400,
+  bgcolor: 'background.paper',
+  boxShadow: 2,
+  borderRadius: '1rem',
+  padding: '1rem'
+}
 
 const App = () => {
   // Data
@@ -13,7 +33,28 @@ const App = () => {
       firstName: 'Dan',
       lastName: 'Abramov',
       email: 'dan@reactjs.org',
-      phone: 821999
+      phone: '821999'
+    },
+    {
+      id: 2,
+      firstName: 'Julianna',
+      lastName: 'Chaucer',
+      email: 'jchaucer0@google.co.jp',
+      phone: '1119435154'
+    },
+    {
+      id: 3,
+      firstName: 'Langsdon',
+      lastName: 'Capes',
+      email: 'lcapes1@youtu.be',
+      phone: '5851190741'
+    },
+    {
+      id: 4,
+      firstName: 'Freeman',
+      lastName: 'Terlinden',
+      email: 'fcheng3@senate.gov',
+      phone: '9682084196'
     }
   ]
 
@@ -22,13 +63,14 @@ const App = () => {
     firstName: '',
     lastName: '',
     email: '',
-    phone: null
+    phone: ''
   }
 
   // Setting state
   const [users, setUsers] = useState(userAddress)
   const [currentUser, setCurrentUser] = useState(initialFormState)
-  const [editing, setEditing] = useState(false)
+  const [isModalOpen, setIsModelOpen] = useState(false)
+  const [isEditing, setIsEditing] = useState(false)
 
   // CRUD operations
   const addUser = (user) => {
@@ -37,17 +79,17 @@ const App = () => {
   }
 
   const deleteUser = (id) => {
-    setEditing(false)
+    setIsEditing(false)
     setUsers(users.filter((user) => user.id !== id))
   }
 
   const updateUser = (id, updatedUser) => {
-    setEditing(false)
+    setIsEditing(false)
     setUsers(users.map((user) => (user.id === id ? updatedUser : user)))
   }
 
   const editRow = (user) => {
-    setEditing(true)
+    setIsEditing(true)
     setCurrentUser({
       id: user.id,
       firstName: user.firstName,
@@ -57,42 +99,105 @@ const App = () => {
     })
   }
 
+  const onHandleModalOpen = () => setIsModelOpen((prev) => !prev)
+
   return (
-    <Box>
-      <Container maxWidth="lg">
-        <h1>Users adress Information</h1>
-        <div className="flex-row">
-          <div className="flex-large">
-            {editing
-              ? (
-              <Fragment>
-                <h2>Edit address</h2>
-                <EditUserForm
-                  editing={editing}
-                  setEditing={setEditing}
-                  currentUser={currentUser}
-                  updateUser={updateUser}
-                />
-              </Fragment>
-                )
-              : (
-              <Fragment>
-                <h2>Add address</h2>
-                <AddUserForm addUser={addUser} />
-              </Fragment>
-                )}
-          </div>
-          <div className="flex-large">
-            <h2>View address</h2>
-            <UserTable
-              users={users}
-              editRow={editRow}
-              deleteUser={deleteUser}
-            />
-          </div>
-        </div>
-      </Container>
-    </Box>
+    <ThemeProvider theme={theme}>
+      <Box
+        sx={{
+          padding: '1rem',
+          boxSizing: 'border-box',
+          bgcolor: '#f1f1f3',
+          display: 'center',
+          height: '100%'
+        }}
+      >
+        <Container maxWidth="lg" sx={{ margin: '5rem auto 0' }}>
+          <Box mb="1rem">
+            <Typography variant="h4">Users</Typography>
+            <Button
+              onClick={onHandleModalOpen}
+              variant="contained"
+              size="medium"
+              sx={{
+                margin: '1rem 0'
+              }}
+            >
+              <AddIcon /> Add
+            </Button>
+          </Box>
+
+          <Modal
+            open={isModalOpen}
+            onClose={onHandleModalOpen}
+            aria-labelledby="modal-add-user"
+            closeAfterTransition
+          >
+            <Box sx={modalStyle}>
+              <Box
+                sx={{
+                  display: 'flex',
+                  justifyContent: 'space-between',
+                  alignItems: 'center',
+                  marginBottom: '1rem',
+                  width: '100%'
+                }}
+              >
+                <Typography variant="h6" color="primary" fontWeight="500">
+                  New user
+                </Typography>
+                <IconButton
+                  aria-label="cancel"
+                  onClick={onHandleModalOpen}
+                  variant="contained"
+                  size="small"
+                  sx={{
+                    margin: '0',
+                    ':hover': { border: 0 }
+                  }}
+                >
+                  <CloseIcon
+                    sx={{
+                      fill: '#ffff',
+                      bgcolor: 'primary.main',
+                      borderRadius: '5px'
+                    }}
+                  />
+                </IconButton>
+              </Box>
+              <AddUserForm addUser={addUser} />
+            </Box>
+          </Modal>
+          {isEditing
+            ? (
+            <Box
+              sx={{
+                borderRadius: '1rem',
+                bgcolor: '#fff',
+                padding: '1rem',
+                boxSizing: 'border-box'
+              }}
+            >
+              <EditUserForm
+                editing={isEditing}
+                setEditing={setIsEditing}
+                currentUser={currentUser}
+                updateUser={updateUser}
+              />
+            </Box>
+              )
+            : (
+            <Box sx={{ bgcolor: '#fff' }}>
+              <UserTable
+                users={users}
+                editRow={editRow}
+                deleteUser={deleteUser}
+              />
+            </Box>
+              )}
+        </Container>
+      </Box>
+    </ThemeProvider>
   )
 }
 
