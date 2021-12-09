@@ -154,7 +154,7 @@ const App = () => {
               <TextField
                 name="search"
                 type="text"
-                label="search user"
+                label="search by first or last name only"
                 placeholder="Search user"
                 fullWidth
                 size="small"
