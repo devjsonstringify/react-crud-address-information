@@ -15,10 +15,6 @@ const AddUserForm = ({ addUser }) => {
 
   const handleInputChange = (event) => {
     const { name, value } = event.target
-
-    console.log(name)
-    console.log(value)
-
     setUser({ ...user, [name]: value })
   }
 
