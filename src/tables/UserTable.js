@@ -10,6 +10,7 @@ import TableHead from '@mui/material/TableHead'
 import TableRow from '@mui/material/TableRow'
 import Typography from '@mui/material/Typography'
 import ActionButtons from '../components/ActionsButton/ActionButtons'
+import { motion, AnimatePresence } from 'framer-motion'
 import NoDataFound from '../components/NoDataFound/NoDataFound'
 
 const UserTable = ({ users, editRow, deleteUser }) => {
@@ -22,6 +23,7 @@ const UserTable = ({ users, editRow, deleteUser }) => {
             size="medium"
             sx={{
               minWidth: 650,
+              overflow: 'hidden',
               marginBottom: '0',
               'tr:first-of-type': {
                 '.MuiTableCell-root': {
@@ -44,32 +46,48 @@ const UserTable = ({ users, editRow, deleteUser }) => {
               </TableRow>
             </TableHead>
             <TableBody>
-              {users.map((user) => (
-                <TableRow
-                  key={user.id}
-                  sx={{
-                    '&:last-child td, &:last-child th': { border: 0 },
-                    '.MuiTableCell-root': {
-                      borderBottom: ' 0.5rem solid #f1f1f3'
-                    }
-                  }}
-                >
-                  <TableCell component="th" scope="row">
-                    {user.firstName}
-                  </TableCell>
-                  <TableCell align="left">{user.lastName}</TableCell>
-                  <TableCell align="left">
-                    <Typography color="secondary">{user.email}</Typography>
-                  </TableCell>
-                  <TableCell align="left">{user.phone}</TableCell>
-                  <TableCell align="left">
-                    <ActionButtons
-                      onHandleEdit={() => editRow(user)}
-                      onHandleDelete={() => deleteUser(user.id)}
-                    />
-                  </TableCell>
-                </TableRow>
-              ))}
+              <AnimatePresence>
+                {users.map((user, idx) => (
+                  <TableRow
+                    component={motion.tr}
+                    key={user.id}
+                    initial={{
+                      opacity: 0,
+                      translateY: 50
+                    }}
+                    animate={{ opacity: 1, translateX: 0, translateY: 0 }}
+                    transition={{ duration: 0.5, delay: idx * 0.25 }}
+                    exit={{
+                      opacity: 0.5,
+                      transition: {
+                        duration: 0.5,
+                        ease: 'easeOut'
+                      }
+                    }}
+                    sx={{
+                      '&:last-child td, &:last-child th': { border: 0 },
+                      '.MuiTableCell-root': {
+                        borderBottom: ' 0.5rem solid #f1f1f3'
+                      }
+                    }}
+                  >
+                    <TableCell component="th" scope="row">
+                      {user.firstName}
+                    </TableCell>
+                    <TableCell align="left">{user.lastName}</TableCell>
+                    <TableCell align="left">
+                      <Typography color="secondary">{user.email}</Typography>
+                    </TableCell>
+                    <TableCell align="left">{user.phone}</TableCell>
+                    <TableCell align="left">
+                      <ActionButtons
+                        onHandleEdit={() => editRow(user)}
+                        onHandleDelete={() => deleteUser(user.id)}
+                      />
+                    </TableCell>
+                  </TableRow>
+                ))}
+              </AnimatePresence>
             </TableBody>
           </Table>
         </TableContainer>

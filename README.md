@@ -6,7 +6,7 @@
 - [x] Update item
 - [x] Delete item
 - [x] UI with material-ui
-- [ ] Add animation
+- [x] Add animation
 - [x] Filter feature
 - [ ] Responsive
 - [x] Fix linter issue
