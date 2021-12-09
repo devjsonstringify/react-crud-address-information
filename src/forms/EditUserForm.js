@@ -4,8 +4,7 @@ import TextField from '@mui/material/TextField'
 import Button from '@mui/material/Button'
 import Box from '@mui/material/Box'
 
-const EditUserForm = (props) => {
-  const { currentUser, setEditing, updateUser } = props
+const EditUserForm = ({ currentUser, setEditing, updateUser }) => {
   const [user, setUser] = useState(props.currentUser)
 
   useEffect(() => {
@@ -36,12 +35,12 @@ const EditUserForm = (props) => {
         sx={{
           '.MuiOutlinedInput-notchedOutline': {
             borderColor: 'primary.main',
-            borderWidth: '2px'
-          }
+            borderWidth: '2px',
+          },
         }}
         value={user.firstName}
         onChange={handleInputChange}
-        />
+      />
       <TextField
         type="text"
         name="lastName"
@@ -52,12 +51,12 @@ const EditUserForm = (props) => {
         sx={{
           '.MuiOutlinedInput-notchedOutline': {
             borderColor: 'primary.main',
-            borderWidth: '2px'
-          }
+            borderWidth: '2px',
+          },
         }}
         value={user.lastName}
         onChange={handleInputChange}
-        />
+      />
       <TextField
         type="email"
         name="email"
@@ -68,12 +67,12 @@ const EditUserForm = (props) => {
         sx={{
           '.MuiOutlinedInput-notchedOutline': {
             borderColor: 'primary.main',
-            borderWidth: '2px'
-          }
+            borderWidth: '2px',
+          },
         }}
         value={user.email}
         onChange={handleInputChange}
-        />
+      />
       <TextField
         type="number"
         name="phone"
@@ -84,14 +83,19 @@ const EditUserForm = (props) => {
         sx={{
           '.MuiOutlinedInput-notchedOutline': {
             borderColor: 'primary.main',
-            borderWidth: '2px'
-          }
+            borderWidth: '2px',
+          },
         }}
         value={user.phone}
         onChange={handleInputChange}
       />
       <Box sx={{ margin: '1rem 0' }}>
-        <Button type="submit" variant="contained" color="primary" sx={{ mr: '1rem' }}>
+        <Button
+          type="submit"
+          variant="contained"
+          color="primary"
+          sx={{ mr: '1rem' }}
+        >
           Update
         </Button>
         <Button type="cancel" variant="text" onClick={() => setEditing(false)}>
@@ -107,10 +111,10 @@ EditUserForm.propTypes = {
     firstName: PropTypes.string.isRequired,
     lastName: PropTypes.string.isRequired,
     email: PropTypes.string.isRequired,
-    phone: PropTypes.string.isRequired
+    phone: PropTypes.string.isRequired,
   }),
   setEditing: PropTypes.func.isRequired,
-  updateUser: PropTypes.func.isRequired
+  updateUser: PropTypes.func.isRequired,
 }
 
 export default EditUserForm

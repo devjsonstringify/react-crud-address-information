@@ -12,13 +12,11 @@ import Typography from '@mui/material/Typography'
 import ActionButtons from '../components/ActionsButton/ActionButtons'
 import NoDataFound from '../components/NoDataFound/NoDataFound'
 
-const UserTable = (props) => {
-  const { users, editRow, deleteUser } = props
-
+const UserTable = ({ users, editRow, deleteUser }) => {
+  
   return (
     <Box>
-      {users.length > 0
-        ? (
+      {users.length > 0 ? (
         <TableContainer>
           <Table
             size="medium"
@@ -27,9 +25,9 @@ const UserTable = (props) => {
               marginBottom: '0',
               'tr:first-of-type': {
                 '.MuiTableCell-root': {
-                  borderTop: ' 0.5rem solid #f1f1f3'
-                }
-              }
+                  borderTop: ' 0.5rem solid #f1f1f3',
+                },
+              },
             }}
             stickyHeader
             aria-label="sticky table"
@@ -52,8 +50,8 @@ const UserTable = (props) => {
                   sx={{
                     '&:last-child td, &:last-child th': { border: 0 },
                     '.MuiTableCell-root': {
-                      borderBottom: ' 0.5rem solid #f1f1f3'
-                    }
+                      borderBottom: ' 0.5rem solid #f1f1f3',
+                    },
                   }}
                 >
                   <TableCell component="th" scope="row">
@@ -75,10 +73,9 @@ const UserTable = (props) => {
             </TableBody>
           </Table>
         </TableContainer>
-          )
-        : (
+      ) : (
         <NoDataFound />
-          )}
+      )}
     </Box>
   )
 }
@@ -89,11 +86,11 @@ UserTable.propTypes = {
       firstName: PropTypes.string.isRequired,
       lastName: PropTypes.string.isRequired,
       email: PropTypes.string.isRequired,
-      phone: PropTypes.string.isRequired
+      phone: PropTypes.string.isRequired,
     })
   ),
   editRow: PropTypes.func.isRequired,
-  deleteUser: PropTypes.func.isRequired
+  deleteUser: PropTypes.func.isRequired,
 }
 
 export default UserTable

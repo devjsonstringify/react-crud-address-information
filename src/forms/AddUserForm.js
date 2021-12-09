@@ -3,14 +3,14 @@ import React, { useState } from 'react'
 import TextField from '@mui/material/TextField'
 import Button from '@mui/material/Button'
 
-const AddUserForm = (props) => {
-  const { addUser } = props
+const AddUserForm = ({ addUser }) => {
+  
   const initialFormState = {
     id: null,
     firstName: '',
     lastName: '',
     email: '',
-    phone: ''
+    phone: '',
   }
   const [user, setUser] = useState(initialFormState)
 
@@ -46,8 +46,8 @@ const AddUserForm = (props) => {
         sx={{
           '.MuiOutlinedInput-notchedOutline': {
             borderColor: 'primary.main',
-            borderWidth: '2px'
-          }
+            borderWidth: '2px',
+          },
         }}
         value={user.firstName}
         onChange={handleInputChange}
@@ -63,8 +63,8 @@ const AddUserForm = (props) => {
         sx={{
           '.MuiOutlinedInput-notchedOutline': {
             borderColor: 'primary.main',
-            borderWidth: '2px'
-          }
+            borderWidth: '2px',
+          },
         }}
         value={user.lastName}
         onChange={handleInputChange}
@@ -80,8 +80,8 @@ const AddUserForm = (props) => {
         sx={{
           '.MuiOutlinedInput-notchedOutline': {
             borderColor: 'primary.main',
-            borderWidth: '2px'
-          }
+            borderWidth: '2px',
+          },
         }}
         value={user.email}
         onChange={handleInputChange}
@@ -97,8 +97,8 @@ const AddUserForm = (props) => {
         sx={{
           '.MuiOutlinedInput-notchedOutline': {
             borderColor: 'primary.main',
-            borderWidth: '2px'
-          }
+            borderWidth: '2px',
+          },
         }}
         value={user.phone}
         onChange={handleInputChange}
@@ -117,7 +117,7 @@ const AddUserForm = (props) => {
 }
 
 AddUserForm.propTypes = {
-  addUser: PropTypes.func.isRequired
+  addUser: PropTypes.func.isRequired,
 }
 
 export default AddUserForm
