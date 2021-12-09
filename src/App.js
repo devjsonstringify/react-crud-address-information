@@ -15,14 +15,22 @@ import UserTable from './tables/UserTable'
 import { theme } from './theme'
 
 const modalStyle = {
-  position: 'absolute',
-  top: '50%',
-  left: '50%',
-  transform: 'translate(-50%, -50%)',
-  width: 400,
+  margin: {
+    xs: '0',
+    sm: 'auto'
+  },
+  width: {
+    xs: '100%',
+    sm: 'calc(100vw / 2)',
+    md: 'calc(100vw / 3)'
+  },
+  height: 'auto',
   bgcolor: 'background.paper',
   boxShadow: 2,
-  borderRadius: '1rem',
+  borderRadius: {
+    xs: '0',
+    sm: '1rem'
+  },
   padding: '1rem'
 }
 
@@ -134,8 +142,18 @@ const App = () => {
             sx={{
               mb: '1rem',
               display: 'grid',
-              gridTemplateColumns: '1fr 1fr',
-              gridGap: '2rem'
+              gridTemplateColumns: {
+                sm: '1fr',
+                md: '1fr 1fr'
+              },
+              gridTemplateRow: {
+                sm: '1fr 1fr',
+                md: '1fr'
+              },
+              gridGap: {
+                sm: '0.5rem',
+                md: '2rem'
+              }
             }}
           >
             <Box>
@@ -176,6 +194,12 @@ const App = () => {
             onClose={onHandleModalOpen}
             aria-labelledby="modal-add-user"
             closeAfterTransition
+            sx={{
+              display: 'flex',
+              margin: {
+                sm: 'auto 2rem'
+              }
+            }}
           >
             <Box sx={modalStyle}>
               <Box
@@ -183,7 +207,7 @@ const App = () => {
                   display: 'flex',
                   justifyContent: 'space-between',
                   alignItems: 'center',
-                  marginBottom: '1rem',
+                  margin: 'auto auto 1rem',
                   width: '100%'
                 }}
               >

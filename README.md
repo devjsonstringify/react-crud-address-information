@@ -8,6 +8,6 @@
 - [x] UI with material-ui
 - [x] Add animation
 - [x] Filter feature
-- [ ] Responsive
+- [x] Responsive
 - [x] Fix linter issue
 - [x] Typechecking With PropTypes
