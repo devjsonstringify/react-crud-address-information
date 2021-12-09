@@ -7,7 +7,7 @@
 - [x] Delete item
 - [x] UI with material-ui
 - [ ] Add animation
-- [ ] Filter feature
+- [x] Filter feature
 - [ ] Responsive
 - [x] Fix linter issue
 - [x] Typechecking With PropTypes

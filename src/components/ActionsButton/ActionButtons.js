@@ -4,7 +4,6 @@ import Box from '@mui/material/Box'
 import Button from '@mui/material/Button'
 
 const ActionButtons = ({ onHandleEdit, onHandleDelete }) => {
-  
   return (
     <Box
       sx={{

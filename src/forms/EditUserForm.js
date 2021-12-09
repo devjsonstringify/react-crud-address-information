@@ -5,11 +5,11 @@ import Button from '@mui/material/Button'
 import Box from '@mui/material/Box'
 
 const EditUserForm = ({ currentUser, setEditing, updateUser }) => {
-  const [user, setUser] = useState(props.currentUser)
+  const [user, setUser] = useState(currentUser)
 
   useEffect(() => {
     setUser(currentUser)
-  }, [props])
+  }, [currentUser])
   // You can tell React to skip applying an effect if certain values haven’t changed between re-renders. [ props ]
 
   const handleInputChange = (event) => {
@@ -35,8 +35,8 @@ const EditUserForm = ({ currentUser, setEditing, updateUser }) => {
         sx={{
           '.MuiOutlinedInput-notchedOutline': {
             borderColor: 'primary.main',
-            borderWidth: '2px',
-          },
+            borderWidth: '2px'
+          }
         }}
         value={user.firstName}
         onChange={handleInputChange}
@@ -51,8 +51,8 @@ const EditUserForm = ({ currentUser, setEditing, updateUser }) => {
         sx={{
           '.MuiOutlinedInput-notchedOutline': {
             borderColor: 'primary.main',
-            borderWidth: '2px',
-          },
+            borderWidth: '2px'
+          }
         }}
         value={user.lastName}
         onChange={handleInputChange}
@@ -67,8 +67,8 @@ const EditUserForm = ({ currentUser, setEditing, updateUser }) => {
         sx={{
           '.MuiOutlinedInput-notchedOutline': {
             borderColor: 'primary.main',
-            borderWidth: '2px',
-          },
+            borderWidth: '2px'
+          }
         }}
         value={user.email}
         onChange={handleInputChange}
@@ -83,8 +83,8 @@ const EditUserForm = ({ currentUser, setEditing, updateUser }) => {
         sx={{
           '.MuiOutlinedInput-notchedOutline': {
             borderColor: 'primary.main',
-            borderWidth: '2px',
-          },
+            borderWidth: '2px'
+          }
         }}
         value={user.phone}
         onChange={handleInputChange}
@@ -111,10 +111,10 @@ EditUserForm.propTypes = {
     firstName: PropTypes.string.isRequired,
     lastName: PropTypes.string.isRequired,
     email: PropTypes.string.isRequired,
-    phone: PropTypes.string.isRequired,
+    phone: PropTypes.string.isRequired
   }),
   setEditing: PropTypes.func.isRequired,
-  updateUser: PropTypes.func.isRequired,
+  updateUser: PropTypes.func.isRequired
 }
 
 export default EditUserForm

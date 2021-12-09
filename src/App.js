@@ -8,6 +8,7 @@ import Button from '@mui/material/Button'
 import AddIcon from '@mui/icons-material/Add'
 import Modal from '@mui/material/Modal'
 import { ThemeProvider } from '@mui/material/styles'
+import TextField from '@mui/material/TextField'
 import AddUserForm from './forms/AddUserForm'
 import EditUserForm from './forms/EditUserForm'
 import UserTable from './tables/UserTable'
@@ -71,6 +72,7 @@ const App = () => {
   const [currentUser, setCurrentUser] = useState(initialFormState)
   const [isModalOpen, setIsModelOpen] = useState(false)
   const [isEditing, setIsEditing] = useState(false)
+  const [userQuery, setUserQuery] = useState('')
 
   // CRUD operations
   const addUser = (user) => {
@@ -100,6 +102,20 @@ const App = () => {
   }
 
   const onHandleModalOpen = () => setIsModelOpen((prev) => !prev)
+  const onHandleSearch = (event) => {
+    const { value } = event.target
+    setUserQuery(value)
+  }
+
+  const results = !userQuery
+    ? users
+    : users.filter(
+      (user) =>
+        user.firstName
+          .toLowerCase()
+          .includes(userQuery.toLocaleLowerCase()) ||
+          user.lastName.toLowerCase().includes(userQuery.toLocaleLowerCase())
+    )
 
   return (
     <ThemeProvider theme={theme}>
@@ -113,18 +129,46 @@ const App = () => {
         }}
       >
         <Container maxWidth="lg" sx={{ margin: '5rem auto 0' }}>
-          <Box mb="1rem">
-            <Typography variant="h4">Users</Typography>
-            <Button
-              onClick={onHandleModalOpen}
-              variant="contained"
-              size="medium"
-              sx={{
-                margin: '1rem 0'
-              }}
-            >
-              <AddIcon /> Add
-            </Button>
+          <Typography variant="h4">Users</Typography>
+          <Box
+            sx={{
+              mb: '1rem',
+              display: 'grid',
+              gridTemplateColumns: '1fr 1fr',
+              gridGap: '2rem'
+            }}
+          >
+            <Box>
+              <Button
+                onClick={onHandleModalOpen}
+                variant="contained"
+                size="medium"
+                sx={{
+                  margin: '1rem 0'
+                }}
+              >
+                <AddIcon /> Add
+              </Button>
+            </Box>
+            <Box>
+              <TextField
+                name="search"
+                type="text"
+                label="search user"
+                placeholder="Search user"
+                fullWidth
+                size="small"
+                margin="normal"
+                onChange={onHandleSearch}
+                sx={{
+                  bgcolor: '#fff',
+                  '.MuiOutlinedInput-notchedOutline': {
+                    borderColor: 'primary.main',
+                    borderWidth: '2px'
+                  }
+                }}
+              />
+            </Box>
           </Box>
 
           <Modal
@@ -189,7 +233,7 @@ const App = () => {
             : (
             <Box sx={{ bgcolor: '#fff' }}>
               <UserTable
-                users={users}
+                users={results}
                 editRow={editRow}
                 deleteUser={deleteUser}
               />
